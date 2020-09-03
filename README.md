@@ -1,4 +1,4 @@
-# file-parser with Node.js and TypeScript
+# File Parser with Node.js and TypeScript
 It is simple demo application with Node.js and TypeScript completed as a challenge. 
 
 To use application: 
