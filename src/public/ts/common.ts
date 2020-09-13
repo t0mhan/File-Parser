@@ -51,7 +51,7 @@ export function getOperationTypeCount(): OperationTypeInterface {
  * @param operations 
  * @param operationType 
  */
-export function setUniqueValue(operations?: string, operationType?: string) {
+export function setUniqueValue(operations?: string, operationType?: string): any {
     if (operations) operationsSet.add(operations);
     if (operationType) operationsTypeSet.add(operationType);
     return [operationsSet, operationsTypeSet];
@@ -86,7 +86,7 @@ export function splitData(singleLine: string[]): string[] {
     let opType = operationTypeSplit[0].trim() === TypesEnum.OPERATIONTYPE && operationType;
     if (opType) countOperationType(opType);
 
-    // set average, minimum and maximux values
+    // return operations, duration, operation types
     return [operation, duration, operationType];
 }
 
@@ -96,7 +96,6 @@ export function splitData(singleLine: string[]): string[] {
  */
 
 export function calculateAvgMinMax(oData: string[]): operationObjInterface[] {
-    let avg = 0.0;
     let min = 0.0;
     let max = 0.0;
     let sum = 0.0;
@@ -142,8 +141,8 @@ export function getGroupedData(parsedData: string[]): [operationObjInterface[], 
         if (!operationTypeData[dOperationType]) operationTypeData[dOperationType] = [];
         operationTypeData[dOperationType].push(ele[1]);
     });
-
     let operations: operationObjInterface[] = calculateAvgMinMax(operationsData);
     let operationType: operationObjInterface[] = calculateAvgMinMax(operationTypeData);
+    
     return [operations, operationType];
 }
